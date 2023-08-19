@@ -11,7 +11,7 @@ struct ExampleDTO: Decodable {
     let id: Int
     let name: String
     let description: String
-    
+
     func of() -> ExampleModel {
         return ExampleModel(
             id: id,

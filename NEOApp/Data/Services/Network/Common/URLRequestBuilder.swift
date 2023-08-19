@@ -22,11 +22,11 @@ extension URLRequestBuilder {
     var baseURL: URL {
         return Environment.baseURL
     }
-    
+
     var requestURL: URL {
         return baseURL.appendingPathComponent(path, conformingTo: .url)
     }
-    
+
     var encoding: ParameterEncoding {
         switch method {
         case .get:
@@ -35,11 +35,11 @@ extension URLRequestBuilder {
             return JSONEncoding.default
         }
     }
-    
+
     var headers: HTTPHeaders {
         return HTTPHeaders()
     }
-    
+
     var urlRequest: URLRequest {
         var request = URLRequest(url: requestURL)
         request.httpMethod = method.rawValue
@@ -48,9 +48,8 @@ extension URLRequestBuilder {
         }
         return request
     }
-    
+
     public func asURLRequest() throws -> URLRequest {
         return try encoding.encode(urlRequest, with: parameters)
     }
 }
-

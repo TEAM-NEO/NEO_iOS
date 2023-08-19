@@ -16,29 +16,28 @@ protocol ExampleRepositoryProviding {
 }
 
 final class ExampleRepository {
-    private let networkService: ExampleServiceProvidable
-    
-    init(networkService: ExampleServiceProvidable = ExampleService()) {
+    private let networkService: NetworkServiceProvidable
+
+    init(networkService: NetworkServiceProvidable = NetworkService.default) {
         self.networkService = networkService
     }
 }
 
 extension ExampleRepository: ExampleRepositoryProviding {
     func fetchExample(completion: @escaping (Result<ExampleDTO, Alamofire.AFError>) -> Void) {
-        <#code#>
+
     }
-    
+
     func createExample(completion: @escaping (Result<ExampleDTO, Alamofire.AFError>) -> Void) {
-        <#code#>
+
     }
-    
+
     func updateExample(completion: @escaping (Result<ExampleDTO, Alamofire.AFError>) -> Void) {
-        <#code#>
+
     }
-    
+
     func deleteExample(completion: @escaping (Result<ExampleDTO, Alamofire.AFError>) -> Void) {
-        <#code#>
+
     }
-    
-    
+
 }

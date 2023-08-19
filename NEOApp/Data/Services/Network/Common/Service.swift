@@ -8,12 +8,19 @@
 import Alamofire
 import RxSwift
 
-public protocol NetworkServiceProvidable: AnyObject {
-    func execute<T: Codable>(_ urlRequest: URLRequestBuilder, model: T.Type) -> Single<T>
+protocol NetworkServiceProvidable {
+    func execute<T: Decodable>(_ urlRequest: URLRequestBuilder, model: T.Type) -> Single<T>
 }
 
-public extension NetworkServiceProvidable {
-    func execute<T: Codable>(_ urlRequest: URLRequestBuilder, model: T.Type) -> Single<T> {
+final class NetworkService {
+    static let `default`: NetworkServiceProvidable = {
+        var service = NetworkService()
+        return service
+    }()
+}
+
+extension NetworkService: NetworkServiceProvidable {
+    func execute<T: Decodable>(_ urlRequest: URLRequestBuilder, model: T.Type) -> Single<T> {
         return Single<T>.create { single in
             let request = AF.request(urlRequest)
             let disposable = request.validate().responseDecodable(of: T.self) { response in
@@ -24,17 +31,11 @@ public extension NetworkServiceProvidable {
                     single(.failure(error))
                 }
             }
-            
+
             return Disposables.create {
                 disposable.cancel()
             }
         }
     }
-}
 
-public class NetworkService: NetworkServiceProvidable {
-    public static let `default`: NetworkServiceProvidable = {
-        var service = NetworkService()
-        return service
-    }()
 }

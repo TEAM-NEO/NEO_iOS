@@ -11,3 +11,10 @@ struct ExampleRequestDTO: Encodable {
     let name: String
     let description: String
 }
+
+extension ExampleRequestDTO {
+    init(model: ExampleModel) {
+        self.name = model.name
+        self.description = model.description
+    }
+}
