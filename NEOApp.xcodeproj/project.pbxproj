@@ -33,9 +33,10 @@
 		0BA0A0502A90FC020096B287 /* ExampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0A04F2A90FC020096B287 /* ExampleModel.swift */; };
 		0BA0A05A2A9105DE0096B287 /* ExampleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0A0592A9105DE0096B287 /* ExampleService.swift */; };
 		0BA0A05C2A9107AC0096B287 /* ExampleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0A05B2A9107AC0096B287 /* ExampleRepository.swift */; };
-		0BA0A05F2A910A030096B287 /* Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0A05E2A910A030096B287 /* Example.swift */; };
+		0BA0A05F2A910A030096B287 /* ExampleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0A05E2A910A030096B287 /* ExampleRequest.swift */; };
 		0BA0A0632A9110540096B287 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0A0622A9110540096B287 /* ExampleViewController.swift */; };
 		0BA0A0652A9110720096B287 /* ExampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0A0642A9110720096B287 /* ExampleViewModel.swift */; };
+		0BA0A0672A9123970096B287 /* ExampleInteractors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0A0662A9123970096B287 /* ExampleInteractors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,9 +92,10 @@
 		0BA0A04F2A90FC020096B287 /* ExampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleModel.swift; sourceTree = "<group>"; };
 		0BA0A0592A9105DE0096B287 /* ExampleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleService.swift; sourceTree = "<group>"; };
 		0BA0A05B2A9107AC0096B287 /* ExampleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleRepository.swift; sourceTree = "<group>"; };
-		0BA0A05E2A910A030096B287 /* Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example.swift; sourceTree = "<group>"; };
+		0BA0A05E2A910A030096B287 /* ExampleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleRequest.swift; sourceTree = "<group>"; };
 		0BA0A0622A9110540096B287 /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
 		0BA0A0642A9110720096B287 /* ExampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewModel.swift; sourceTree = "<group>"; };
+		0BA0A0662A9123970096B287 /* ExampleInteractors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleInteractors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,7 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				0BA0A0512A90FD060096B287 /* Common */,
-				0BA0A05E2A910A030096B287 /* Example.swift */,
+				0BA0A05E2A910A030096B287 /* ExampleRequest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -258,6 +260,7 @@
 		0BA0A0562A9104A10096B287 /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
+				0BA0A0662A9123970096B287 /* ExampleInteractors.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				0B7F18782A8D3BC500B5D7C1 /* Frameworks */,
 				0B7F18792A8D3BC500B5D7C1 /* Resources */,
 				0BA0A0362A90E6D60096B287 /* Embed Foundation Extensions */,
+				0BA0A0682A914FA80096B287 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -440,6 +444,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0BA0A0682A914FA80096B287 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint > /dev/null; then\n  swiftlint --fix & swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0B7F18772A8D3BC500B5D7C1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -453,8 +477,9 @@
 				0B7F18832A8D3BC500B5D7C1 /* ViewController.swift in Sources */,
 				0BA0A03E2A90EA300096B287 /* Environment.swift in Sources */,
 				0BA0A04E2A90FB6D0096B287 /* ExampleRequestDTO.swift in Sources */,
-				0BA0A05F2A910A030096B287 /* Example.swift in Sources */,
+				0BA0A05F2A910A030096B287 /* ExampleRequest.swift in Sources */,
 				0BA0A0652A9110720096B287 /* ExampleViewModel.swift in Sources */,
+				0BA0A0672A9123970096B287 /* ExampleInteractors.swift in Sources */,
 				0B7F187F2A8D3BC500B5D7C1 /* AppDelegate.swift in Sources */,
 				0BA0A0412A90EAF30096B287 /* Base.swift in Sources */,
 				0BA0A05A2A9105DE0096B287 /* ExampleService.swift in Sources */,
@@ -545,7 +570,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -608,7 +633,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
