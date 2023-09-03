@@ -100,3 +100,6 @@ iOSInjectionProject/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
+## Hide Secrets
+
+*-Keys.plist
