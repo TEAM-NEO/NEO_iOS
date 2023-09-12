@@ -22,7 +22,19 @@ class MainAuthenticationViewController: UIViewController {
     }
 
     private let logoImageView = UIImageView(image: UIImage(named: "Logo"))
-
+    
+    let loginButtonStack = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 10
+        $0.distribution = .fillEqually
+    }
+    
+    private let emailLoginButton = UIButton(type: .system).then {
+        $0.backgroundColor = .systemGray6
+        $0.setTitle("이메일 로그인", for: .normal)
+        $0.layer.cornerRadius = 8
+    }
+    
     private let kakaoLoginButton = UIButton(type: .custom).then {
         $0.setImage(UIImage(named: "KakaoLogin"), for: .normal)
     }
@@ -45,7 +57,7 @@ extension MainAuthenticationViewController {
 
         scrollView.addSubview(contentView)
         contentView.snp.makeConstraints {
-            $0.width.centerX.top.bottom.equalToSuperview()
+            $0.edges.width.height.equalToSuperview()
         }
 
         contentView.addSubview(logoImageView)
@@ -53,24 +65,23 @@ extension MainAuthenticationViewController {
             $0.top.equalToSuperview().offset(200)
             $0.centerX.equalToSuperview()
         }
-
-        contentView.addSubview(kakaoLoginButton)
+        
+        contentView.addSubview(loginButtonStack)
+        loginButtonStack.snp.makeConstraints {
+            $0.top.equalTo(logoImageView.snp.bottom).offset(128)
+            $0.centerX.equalToSuperview()
+        }
+        
+        loginButtonStack.addArrangedSubview(emailLoginButton)
+        loginButtonStack.addArrangedSubview(kakaoLoginButton)
+        
+        emailLoginButton.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.centerX.equalToSuperview()
+        }
+        
         kakaoLoginButton.snp.makeConstraints {
-            $0.top.equalTo(logoImageView.snp.bottom).offset(200)
-            $0.leading.equalToSuperview().offset(30)
-            $0.trailing.equalToSuperview().offset(-30)
-            $0.height.equalTo(56)
-        }
-
-        let apiFieldStack = UIStackView(arrangedSubviews: [kakaoLoginButton]).then {
-            $0.axis = .horizontal
-            $0.spacing = 28
-            $0.distribution = .fillEqually
-        }
-
-        contentView.addSubview(apiFieldStack)
-        apiFieldStack.snp.makeConstraints {
-            $0.top.equalTo(logoImageView.snp.bottom).offset(200)
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-10)
         }
