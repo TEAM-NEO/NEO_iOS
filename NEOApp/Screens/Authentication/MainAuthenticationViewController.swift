@@ -11,6 +11,7 @@ import Then
 import RxSwift
 
 class MainAuthenticationViewController: UIViewController {
+    
     private let viewModel = MainAuthenticationViewModel()
     private let disposeBag = DisposeBag()
 
@@ -29,10 +30,11 @@ class MainAuthenticationViewController: UIViewController {
         $0.distribution = .fillEqually
     }
     
-    private let emailLoginButton = UIButton(type: .system).then {
+    lazy var emailLoginButton = UIButton(type: .system).then {
         $0.backgroundColor = .systemGray6
         $0.setTitle("이메일 로그인", for: .normal)
         $0.layer.cornerRadius = 8
+        $0.addTarget(self, action: #selector(touchUpEmailLoginButton), for: .touchUpInside)
     }
     
     private let kakaoLoginButton = UIButton(type: .custom).then {
@@ -44,9 +46,11 @@ class MainAuthenticationViewController: UIViewController {
         setUI()
         bind()
     }
+    
 }
 
 extension MainAuthenticationViewController {
+    
     private func setUI() {
         view.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
 
@@ -117,4 +121,9 @@ extension MainAuthenticationViewController {
                 self.present(alert, animated: true)
             }).disposed(by: disposeBag)
     }
+    
+    @objc func touchUpEmailLoginButton(_ sender: UIButton) {
+        self.navigationController?.pushViewController(LoginViewController(), animated: false)
+    }
+    
 }
