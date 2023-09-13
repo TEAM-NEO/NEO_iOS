@@ -45,6 +45,25 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
         $0.setLeftImage(UIImage(systemName: "lock"))
     }
 
+    private let loginButton = UIButton(type: .system).then {
+        $0.setTitleColor(.white, for: .normal)
+        $0.backgroundColor = UIColor(named: "AccentColor")
+        $0.layer.cornerRadius = 8
+        $0.setTitle("로그인", for: .normal)
+        
+    }
+    
+    private lazy var signUpButton = UIButton(type: .system).then {
+        $0.setAttributedTitle(
+            NSAttributedString(
+                string: "회원가입",
+                attributes: [
+                    .font: UIFont.systemFont(ofSize: 14),
+                    .underlineStyle: NSUnderlineStyle.single.rawValue
+            ]), for: .normal)
+        $0.addTarget(self, action: #selector(touchUpSignUpButton), for: .touchUpInside)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
@@ -104,11 +123,25 @@ extension LoginViewController {
             $0.top.equalToSuperview()
             $0.centerX.equalToSuperview()
         }
+        
         passwordTextField.snp.makeConstraints {
             $0.bottom.equalToSuperview().offset(-10)
             $0.centerX.equalToSuperview()
         }
         
+        contentView.addSubview(loginButton)
+        loginButton.snp.makeConstraints {
+            $0.top.equalTo(loginTextFieldStack.snp.bottom).offset(20)
+            $0.leading.equalTo(loginTextFieldStack.snp.leading)
+            $0.trailing.equalTo(loginTextFieldStack.snp.trailing)
+            $0.centerX.equalToSuperview()
+        }
+        
+        contentView.addSubview(signUpButton)
+        signUpButton.snp.makeConstraints {
+            $0.top.equalTo(loginButton.snp.bottom).offset(16)
+            $0.centerX.equalToSuperview()
+        }
         
     }
     
@@ -116,4 +149,10 @@ extension LoginViewController {
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
+    
+    
+    @objc func touchUpSignUpButton(_ sender: UIButton) {
+        self.navigationController?.pushViewController(SignUpViewController(), animated: true)
+    }
+    
 }
