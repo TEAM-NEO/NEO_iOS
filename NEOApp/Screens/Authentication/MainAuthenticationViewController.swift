@@ -46,6 +46,10 @@ class MainAuthenticationViewController: UIViewController {
         $0.largeContentImage = UIImage(named: "envelope")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
