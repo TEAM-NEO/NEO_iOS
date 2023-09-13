@@ -41,6 +41,11 @@ class MainAuthenticationViewController: UIViewController {
         $0.setImage(UIImage(named: "KakaoLogin"), for: .normal)
     }
 
+    private let emailTextField: UITextField = UITextField().then {
+        $0.placeholder = "이메일"
+        $0.largeContentImage = UIImage(named: "envelope")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
