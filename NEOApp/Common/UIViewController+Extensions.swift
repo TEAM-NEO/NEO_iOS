@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    var safeArea:UIView {
+    var safeArea: UIView {
         get {
             guard let safeArea = self.view.viewWithTag(Int(INT_MAX)) else {
                 let guide = self.view.safeAreaLayoutGuide

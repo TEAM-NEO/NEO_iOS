@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
+class LoginViewController: UIViewController {
     
     private let contentView = UIView()
 
@@ -66,15 +66,7 @@ class LoginViewController: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationBar()
         setUI()
-    }
-    
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        guard let navigationController = self.navigationController else {
-            return false
-        }
-        return navigationController.viewControllers.count > 1
     }
 
     /*
@@ -144,12 +136,6 @@ extension LoginViewController {
         }
         
     }
-    
-    private func setNavigationBar() {
-        self.navigationController?.isNavigationBarHidden = true
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-    }
-    
     
     @objc func touchUpSignUpButton(_ sender: UIButton) {
         self.navigationController?.pushViewController(SignUpViewController(), animated: true)

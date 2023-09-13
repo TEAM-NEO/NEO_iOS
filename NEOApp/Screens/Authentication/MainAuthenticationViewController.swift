@@ -10,7 +10,7 @@ import SnapKit
 import Then
 import RxSwift
 
-class MainAuthenticationViewController: UIViewController {
+class MainAuthenticationViewController: UIViewController, UIGestureRecognizerDelegate {
     
     private let viewModel = MainAuthenticationViewModel()
     private let disposeBag = DisposeBag()
@@ -48,12 +48,20 @@ class MainAuthenticationViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
         bind()
+    }
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let navigationController = self.navigationController else {
+            return false
+        }
+        return navigationController.viewControllers.count > 1
     }
     
 }
