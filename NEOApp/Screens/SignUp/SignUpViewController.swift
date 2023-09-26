@@ -42,13 +42,6 @@ class SignUpViewController: UIViewController, UITableViewDataSource, UITableView
     
     // MARK: Setup TableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: self.identifier, for: indexPath)
-//        
-//        // UITableViewCell은 커스텀 예정
-//        var contentConfiguration = cell.defaultContentConfiguration()
-//        contentConfiguration.text = signUpProperties[indexPath.row]
-//        
-//        cell.contentConfiguration = contentConfiguration
         
         guard let cell: SignUpTableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? SignUpTableViewCell else {
             return UITableViewCell()
