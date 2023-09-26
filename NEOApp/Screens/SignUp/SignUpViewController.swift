@@ -25,6 +25,12 @@ class SignUpViewController: UIViewController, UITableViewDataSource, UITableView
         $0.delegate = self
     }
     
+    private lazy var confirmButton: UIButton = UIButton(type: .system).then {
+        $0.setTitle("가입하기 >", for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 20)
+        $0.addTarget(self, action: #selector(touchUpSignUpButton), for: .touchUpInside)
+    }
+    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,8 +92,18 @@ extension SignUpViewController {
         
         contentView.addSubview(signUpTableView)
         signUpTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
+            make.centerY.equalToSuperview()
         }
+        
+        contentView.addSubview(confirmButton)
+        confirmButton.snp.makeConstraints { make in
+            make.bottom.trailing.equalToSuperview().offset(-16)
+        }
+    }
+    
+    @objc func touchUpSignUpButton(_ sender: UIButton) {
+        self.navigationController?.pushViewController(TypeSelectionViewController(), animated: true)
     }
     
 }
