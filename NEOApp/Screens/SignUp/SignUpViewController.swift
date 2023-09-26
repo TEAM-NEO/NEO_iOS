@@ -9,7 +9,8 @@ import UIKit
 
 class SignUpViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let signUpProperties: [String] = ["이메일", "비밀번호", "비밀번호 확인", "닉네임", "성별", "생년월일"]
+    // MARK: Properties
+    let signUpProperties: [String] = ["이메일*", "비밀번호*", "비밀번호 확인*", "닉네임", "성별", "생년월일"]
     let identifier: String = "SignUpCell"
     
     let contentView: UIView = UIView()
@@ -24,21 +25,30 @@ class SignUpViewController: UIViewController, UITableViewDataSource, UITableView
         $0.delegate = self
     }
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        signUpTableView.register(UITableViewCell.self, forCellReuseIdentifier: identifier)
+        signUpTableView.register(SignUpTableViewCell.self, forCellReuseIdentifier: identifier)
         
         setUI()
     }
     
+    // MARK: Setup TableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: self.identifier, for: indexPath)
+//        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: self.identifier, for: indexPath)
+//        
+//        // UITableViewCell은 커스텀 예정
+//        var contentConfiguration = cell.defaultContentConfiguration()
+//        contentConfiguration.text = signUpProperties[indexPath.row]
+//        
+//        cell.contentConfiguration = contentConfiguration
         
-        // UITableViewCell은 커스텀 예정
-        var contentConfiguration = cell.defaultContentConfiguration()
-        contentConfiguration.text = signUpProperties[indexPath.row]
-        cell.contentConfiguration = contentConfiguration
+        guard let cell: SignUpTableViewCell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? SignUpTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.bind(title: signUpProperties[indexPath.row])
         
         return cell
     }
@@ -47,11 +57,6 @@ class SignUpViewController: UIViewController, UITableViewDataSource, UITableView
         return signUpProperties.count
     }
     
-    override var inputAccessoryView: UIView? {
-        get {
-            return UITextField()
-        }
-    }
     /*
     // MARK: - Navigation
 
